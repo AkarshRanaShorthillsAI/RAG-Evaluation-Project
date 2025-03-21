@@ -27,7 +27,7 @@ import torch
 from tqdm import tqdm
 
 # Load CSV file
-CSV_FILE = "scraped_jobs.csv"  # Ensure this file exists
+CSV_FILE = "../scraped_jobs.csv"  # Ensure this file exists
 print("📂 Loading job data...")
 df = pd.read_csv(CSV_FILE)
 
@@ -82,10 +82,10 @@ embeddings = np.vstack(embeddings).astype("float32")
 # Create and save FAISS index
 index = faiss.IndexFlatL2(embeddings.shape[1])
 index.add(embeddings)
-faiss.write_index(index, "job_index.faiss")
+faiss.write_index(index, "../Data_files/job_index.faiss")
 
 # Save job details to JSON
-with open("job_data.json", "w") as f:
+with open("../Data_files/job_data.json", "w") as f:
     json.dump(job_data, f)
 
 print("✅ FAISS index and job details saved successfully!")

@@ -6,7 +6,7 @@ from query_faiss import search_jobs  # Import FAISS + Gemini function
 st.title("🔍 AI-Powered Job Search")
 st.write("Enter a job query below and get AI-refined job listings!")
 
-#  User Input for Job Query
+# User Input for Job Query
 query = st.text_input("💼 Job Search Query:", "")
 
 def is_valid_query(query):
@@ -32,33 +32,38 @@ if st.button("Search Jobs"):
         if not is_valid_query(query):
             st.warning("⚠️ Please enter a valid job query. Avoid using only numbers or random characters.")
         else:
-            st.info("🔄 Searching for the best job matches...")
+            status = st.status("🔄 Searching for the best job matches...", state="running")
 
             # Call FAISS + Gemini function to retrieve AI-refined job results
-            refined_results = search_jobs(query, k=20)  
+            refined_results = search_jobs(query, k=20)
+
             if refined_results:
-                st.subheader("🎯 AI-Refined Job Listings:")
-
-                # Split the AI response into individual job postings
-                jobs = refined_results.split("\n\n")  # Assumes jobs are separated by double newlines
+                status.update(label="✅ Search complete! Here are the results:", state="complete")
                 
-                for idx, job in enumerate(jobs, 1):
-                    lines = job.splitlines()
+                # Display job listings OUTSIDE the status block
+                expander = st.expander("🎯 AI-Refined Job Listings (Click to Expand)", expanded=True)  
+                
+                with expander:
+                    # Split the AI response into individual job postings
+                    jobs = refined_results.split("\n\n")  # Assumes jobs are separated by double newlines
                     
-                    if len(lines) > 1:
-                        company_line = lines[0].strip()  # First line is company name
-                        details = "\n".join(lines[1:])  # Remaining job details
+                    for idx, job in enumerate(jobs, 1):
+                        lines = job.splitlines()
                         
-                        # Display company name in bold + "is hiring!"
-                        st.markdown(f"<h3><b>{idx}. {company_line} </b></h3>", unsafe_allow_html=True)
-                        
-                        # Display job details below with spacing
-                        st.write(details)
+                        if len(lines) > 1:
+                            company_line = lines[0].strip()  # First line is company name
+                            details = "\n".join(lines[1:])  # Remaining job details
+                            
+                            # Display company name in bold + "is hiring!"
+                            st.markdown(f"<h3><b>{idx}. {company_line} </b></h3>", unsafe_allow_html=True)
+                            
+                            # Display job details below with spacing
+                            st.write(details)
 
-                    # Add a horizontal divider for clarity
-                    st.markdown("<hr style='border: 1px solid #ccc; margin: 20px 0;'>", unsafe_allow_html=True)
-                
+                            # Add a horizontal divider for clarity
+                            st.markdown("<hr style='border: 1px solid #ccc; margin: 20px 0;'>", unsafe_allow_html=True)
+                    
             else:
-                st.warning("❌ No relevant jobs found.")
+                status.update(label="❌ No relevant jobs found.", state="error")
     else:
         st.warning("⚠️ Please enter a job query.")
