@@ -119,7 +119,7 @@ def main():
         all_jobs.extend(job_list)
 
     # Save all jobs to CSV
-    save_to_csv(all_jobs, filename="scraped_jobs.csv", overwrite=True)
+    save_to_csv(all_jobs, filename="scraped_jobs2.csv", overwrite=True)
 
 
 if __name__ == "__main__":
