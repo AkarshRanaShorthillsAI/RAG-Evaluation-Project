@@ -17,9 +17,10 @@ Dependencies:
 import json
 import pandas as pd
 
-# 📂 File paths
-GROUND_TRUTH_FILE = "ground_truth.json"
-PREDICTIONS_FILE = "predictions.json"
+# 📂 File paths (Updated based on folder structure)
+GROUND_TRUTH_FILE = "../Data_files/ground_truth.json"
+PREDICTIONS_FILE = "../Data_files/prediction1.json"
+EVALUATION_FILE = "../Data_files/evaluation_results.csv"
 
 # ✅ Load ground truth data
 try:
@@ -93,6 +94,5 @@ print("\n📊 Evaluation Results:")
 print(merged_df[["query", "Recall@1", "Recall@3", "Recall@5"]].head(10))
 
 # ✅ Save results to CSV for analysis
-EVALUATION_FILE = "evaluation_results.csv"
 merged_df.to_csv(EVALUATION_FILE, index=False)
 print(f"✅ Evaluation results saved to {EVALUATION_FILE}")

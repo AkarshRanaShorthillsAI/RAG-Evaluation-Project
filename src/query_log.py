@@ -1,19 +1,8 @@
 """
-query_faiss.py
+query_faiss_batch.py
 
-This script implements a job search pipeline using a FAISS vector database 
-and Google Gemini for refining search results. 
-
-It performs the following tasks:
-1. Loads a FAISS index (`job_index.faiss`) for job retrieval.
-2. Loads job listings from `job_data.json`.
-3. Uses a Hugging Face model to generate embeddings.
-4. Searches FAISS for relevant jobs.
-5. Refines results using Google Gemini.
-6. Logs queries and AI responses in `query_logs.json` and `predictions.json`.
-
-Usage:
-- Call `search_jobs(query, k=10)` with a job query to retrieve job listings.
+Enhanced job search pipeline with batch query processing capabilities.
+Processes multiple queries from a JSON file with 30-second delays between requests.
 """
 
 import os
@@ -25,6 +14,7 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 from dotenv import load_dotenv
 from datetime import datetime
+import time
 
 # Load environment variables
 load_dotenv()
@@ -66,7 +56,6 @@ def log_interaction(query, retrieved_jobs, ai_response):
 
     print("✅ Interaction logged!")
 
-
 def save_predictions(query, selected_links):
     """Saves the most relevant job links into `predictions.json`."""
     predictions = []
@@ -81,7 +70,6 @@ def save_predictions(query, selected_links):
 
     print("✅ Predictions logged successfully!")
 
-
 def load_faiss_index():
     """Loads the FAISS index."""
     try:
@@ -90,7 +78,6 @@ def load_faiss_index():
         return index
     except Exception as e:
         raise ValueError(f"❌ Error loading FAISS index: {e}")
-
 
 def load_job_data():
     """Loads job data from JSON."""
@@ -102,7 +89,6 @@ def load_job_data():
     except Exception as e:
         raise ValueError(f"❌ Error loading job data JSON: {e}")
 
-
 # Load FAISS and job data
 index = load_faiss_index()
 job_data = load_job_data()
@@ -112,14 +98,12 @@ EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 tokenizer = AutoTokenizer.from_pretrained(EMBEDDING_MODEL)
 model = AutoModel.from_pretrained(EMBEDDING_MODEL)
 
-
 def get_embedding(text):
     """Converts query text into an embedding vector."""
     inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=512)
     with torch.no_grad():
         outputs = model(**inputs)
     return outputs.last_hidden_state[:, 0, :].numpy().astype("float32")
-
 
 def extract_top_5_links(ai_response, matched_jobs):
     """Extracts job links for the top 5 refined jobs from Gemini's response."""
@@ -139,17 +123,17 @@ def extract_top_5_links(ai_response, matched_jobs):
 
     return extracted_links[:5]
 
-
-def search_jobs(query, k=10):
+def search_jobs(query, k=10, return_matched_jobs=False):
     """
     Searches FAISS for job listings and refines the results using Google Gemini.
     
     Args:
-        query (str): User search query.
-        k (int): Number of job results to retrieve.
+        query (str): User search query
+        k (int): Number of job results to retrieve
+        return_matched_jobs (bool): Whether to return matched jobs list
 
     Returns:
-        str: Refined job listings as a formatted response.
+        str | tuple: Refined response or (response, matched_jobs) tuple
     """
     query_embedding = get_embedding(query).reshape(1, -1)
 
@@ -160,7 +144,7 @@ def search_jobs(query, k=10):
     if not matched_jobs:
         response = "⚠️ No jobs found. Try a different query."
         log_interaction(query, [], response)
-        return response
+        return (response, []) if return_matched_jobs else response
 
     job_context = "\n\n".join(
         [
@@ -176,8 +160,8 @@ def search_jobs(query, k=10):
 
     prompt = f"""
     You are an AI job assistant. Based on the given user query, refine the provided job listings 
-    and show the exactly **10 most relevant** ones.
-    Show 10 jobs in every case
+    and show the exactly **5 most relevant** ones.
+    NO matter what show 5 jobs in response , if they are not relevant then try to select the most closest ones , just make sure to take them from context.
 
     **Rules:**
     - Select the most relevant jobs based **only on the provided listings**.
@@ -201,14 +185,72 @@ def search_jobs(query, k=10):
     try:
         response = genai.GenerativeModel(MODEL_NAME).generate_content(prompt)
         refined_results = response.text.strip() if hasattr(response, "text") else "No response."
-
         selected_links = extract_top_5_links(refined_results, matched_jobs)
 
     except Exception as e:
         refined_results = f"Error in Gemini API: {e}"
         selected_links = []
 
-    # save_predictions(query, selected_links)
+    # save_predictions(query, selected_links)  # Uncomment if needed
     log_interaction(query, matched_jobs, refined_results)
 
-    return refined_results
+    return (refined_results, matched_jobs) if return_matched_jobs else refined_results
+
+def process_queries_batch(input_json_path, output_json_path):
+    """
+    Processes queries from a JSON file with 30-second delays between requests.
+    
+    Args:
+        input_json_path (str): Path to JSON file with array of {"query": "..."} objects
+        output_json_path (str): Path to save results with links
+    """
+    try:
+        with open(input_json_path, 'r', encoding='utf-8') as f:
+            queries = json.load(f)
+        print(f"✅ Loaded {len(queries)} queries from {input_json_path}")
+    except Exception as e:
+        print(f"❌ Error loading queries: {e}")
+        return
+
+    results = []
+    
+    for idx, query_obj in enumerate(queries):
+        query = query_obj.get("query", "")
+        if not query:
+            print(f"⚠️ Skipping invalid query object: {query_obj}")
+            continue
+            
+        print(f"\nProcessing query {idx+1}/{len(queries)}: {query}")
+        
+        try:
+            refined_response, matched_jobs = search_jobs(query, return_matched_jobs=True)
+            links = extract_top_5_links(refined_response, matched_jobs)
+            
+            results.append({
+                "query": query,
+                "relevant_jobs": links,
+            })
+            
+            if idx < len(queries)-1:
+                print("⏳ Waiting 15 seconds before next query...")
+                time.sleep(15)
+                
+        except Exception as e:
+            print(f"❌ Error processing query: {e}")
+            results.append({
+                "query": query,
+                "error": str(e),
+            })
+
+    try:
+        with open(output_json_path, 'w', encoding='utf-8') as f:
+            json.dump(results, f, indent=4)
+        print(f"✅ Saved {len(results)} results to {output_json_path}")
+    except Exception as e:
+        print(f"❌ Error saving results: {e}")
+
+if __name__ == "__main__":
+    process_queries_batch(
+        input_json_path=os.path.join(BASE_DIR, "Data_files", "ground_truth.json"),
+        output_json_path=os.path.join(BASE_DIR, "Data_files", "prediction1.json")
+    )
