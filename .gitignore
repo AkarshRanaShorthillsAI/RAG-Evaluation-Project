@@ -1,2 +1,3 @@
 .env 
 .venv
+query_log.py

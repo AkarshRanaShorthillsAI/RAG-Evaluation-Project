@@ -176,8 +176,8 @@ def search_jobs(query, k=10):
 
     prompt = f"""
     You are an AI job assistant. Based on the given user query, refine the provided job listings 
-    and show the exactly **10 most relevant** ones.
-    Show 10 jobs in every case
+    and show the exactly **5 most relevant** ones.
+    
 
     **Rules:**
     - Select the most relevant jobs based **only on the provided listings**.
