@@ -19,7 +19,7 @@ import pandas as pd
 
 # 📂 File paths (Updated based on folder structure)
 GROUND_TRUTH_FILE = "../Data_files/ground_truth.json"
-PREDICTIONS_FILE = "../Data_files/prediction1.json"
+PREDICTIONS_FILE = "../Data_files/predictions.json"
 EVALUATION_FILE = "../Data_files/evaluation_results.csv"
 
 # ✅ Load ground truth data
