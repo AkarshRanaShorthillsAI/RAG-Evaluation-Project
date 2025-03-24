@@ -1,0 +1,8 @@
+Sr No.,Test Case,Expected Response,Actual Response,Result,,
+1,Empty query,?? Please enter a job query.,"?? ""?? Please enter a job query.""",Passed,,
+2,Query with only numbers ('12345'),?? Please enter a valid job query.,?? Please enter a valid job query. Avoid using only numbers or random characters.,Passed,,
+3,Query with random characters ('@#$%^&*'),?? Please enter a valid job query.,?? Please enter a valid job query. Avoid using only numbers or random characters.,Passed,,
+4,Query with short input ('Hi'),?? Please enter a valid job query.,?? Please enter a valid job query. Avoid using only numbers or random characters.,Passed,,
+5,Valid job query ('Software Engineer'),? Search complete! Here are the results:,Shows the data for the job,Passed,,
+6,Valid query but no results ('Science Teacher Jobs'),Don't return anything,Empty Output,Passed,,
+,,,,,,

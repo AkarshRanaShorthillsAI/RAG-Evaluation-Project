@@ -1,0 +1,16 @@
+Sr No.,Test Case,Expected Response,Actual Response,Result
+1,Missing ground truth file,Error loading ground truth file,Script will fail at loading ground truth and raise an,PASSED
+2,Missing predictions file,Error loading predictions file,Error loading predictions file: [Errno 2] No such file or directory: 'predictions.json',Passed
+3,Empty ground truth file,Error loading ground truth file,? No matching queries found in both files. Ensure queries are formatted identically.,Passed
+4,Empty predictions file,Error loading predictions file,ValueError: ? No matching queries found in both files. Ensure queries are formatted identically.,Passed
+5,No matching queries between ground truth and predictions,? No matching queries found,ValueError: ? No matching queries found in both files. Ensure queries are formatted identically.,Passed
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,

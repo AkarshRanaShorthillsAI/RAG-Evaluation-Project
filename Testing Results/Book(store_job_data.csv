@@ -1,0 +1,5 @@
+Sr. No,Test Case Description,Expected Output,Generated Output,Result
+1,Check if CSV contains required columns,All required columns exist in the dataset,All columns present,Passed
+2,Verify embedding function returns valid NumPy array,"Embedding shape (1, 384), type numpy.ndarray",Correct shape and type,Passed
+3,Ensure job data is stored in correct JSON format,Valid JSON structure with expected fields,JSON structure correct,Passed
+4,Check if FAISS index is created and saved correctly,FAISS index contains correct number of embeddings,FAISS index saved with 2 entries,Passed

@@ -1,0 +1,7 @@
+Sr. No,Test Case,Expected Output,Generated Output,Result
+1,Test FAISS index loading,FAISS index loads successfully,FAISS index loads successfully,Pass
+2,Test job data loading,Job data loads successfully,Job data loads successfully,Pass
+3,Test embedding generation,Returns a valid numpy array,Returns a valid numpy array,Pass
+4,Test FAISS job search,Returns a list of relevant jobs,Returns a list of relevant jobs,Pass
+5,Test Gemini API response,Returns a refined job listing,Returns a refined job listing,Pass
+6,Test log interaction,Logs query and response correctly,Logs query and response correctly,Pass
