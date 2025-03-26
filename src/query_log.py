@@ -231,9 +231,9 @@ def process_queries_batch(input_json_path, output_json_path):
                 "relevant_jobs": links,
             })
             
-            if idx < len(queries)-1:
-                print("⏳ Waiting 15 seconds before next query...")
-                time.sleep(15)
+            # if idx < len(queries)-1:
+            #     print("⏳ Waiting 15 seconds before next query...")
+            #     time.sleep(15)
                 
         except Exception as e:
             print(f"❌ Error processing query: {e}")
@@ -251,6 +251,6 @@ def process_queries_batch(input_json_path, output_json_path):
 
 if __name__ == "__main__":
     process_queries_batch(
-        input_json_path=os.path.join(BASE_DIR, "Data_files", "ground_truth.json"),
-        output_json_path=os.path.join(BASE_DIR, "Data_files", "prediction1.json")
+        input_json_path=os.path.join(BASE_DIR, "Data_files", "ground_truth_complex.json"),
+        output_json_path=os.path.join(BASE_DIR, "Data_files", "prediction2.json")
     )
