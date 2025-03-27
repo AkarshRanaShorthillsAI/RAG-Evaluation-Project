@@ -1,5 +1,53 @@
 [
     {
+        "query":"Find me a Software Engineer job in Bengaluru requiring python programming, aws data solutions, rest api knowledge, postgresql, linux,, github, with 3 years of experience.",
+        "relevant_jobs":[
+            "https://www.timesjobs.com/job-detail/senior-python-developer-pradeepit-bengaluru-bangalore-3-to-5-yrs-jobid-jUIyDDQue35zpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-python-developer-pradeepit-bengaluru-bangalore-3-to-5-yrs-jobid-clQ220__PLUS__vMc5zpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-python-developer-pradeepit-bengaluru-bangalore-3-to-5-yrs-jobid-5QhkteaE__SLASH__XhzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/software-developer-3-oracle-bengaluru-bangalore-hyderabad-secunderabad-3-to-6-yrs-jobid-JTHEVctij7JzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/software-developer-3-oracle-bengaluru-bangalore-hyderabad-secunderabad-3-to-6-yrs-jobid-0hzjoWgXgBlzpSvf__PLUS__uAgZw==&source=srp"
+        ]
+    },
+    {
+        "query":"Are there any Software Engineer positions in Bengaluru that need Java, Spring Boot, and MySQL with 5 years of experience?",
+        "relevant_jobs":[
+            "https://www.timesjobs.com/job-detail/senior-software-developer-oracle-bengaluru-bangalore-5-to-8-yrs-jobid-G__SLASH__eQmU0UErFzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-software-developer-oracle-chennai-bengaluru-bangalore-6-to-10-yrs-jobid-9FVl19cEzOlzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/sr-java-engineer-concentrix-bpo-pvt-ltd-bengaluru-bangalore-5-to-7-yrs-jobid-32tUCwXK8BRzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-software-developer-oracle-bengaluru-bangalore-5-to-8-yrs-jobid-G__SLASH__eQmU0UErFzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-software-developer-oracle-bengaluru-bangalore-5-to-8-yrs-jobid-Iwrcp9o53iVzpSvf__PLUS__uAgZw==&source=srp"
+        ]
+    },
+    {
+        "query":"Show me Software Engineer jobs in Bengaluru that require  web services integration, cloud technologies, agile methodology, code review expertise, boomi, aem with at least 5 years of experience.",
+        "relevant_jobs":[
+            "https://www.timesjobs.com/job-detail/senior-software-developer-engineer-react-thomson-reuters-bengaluru-bangalore-6-to-9-yrs-jobid-__SLASH__9OkrhK4T1tzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-software-developer-engineer-react-thomson-reuters-bengaluru-bangalore-6-to-9-yrs-jobid-ccZSZjdGH__PLUS__tzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-software-developer-engineer-react-thomson-reuters-bengaluru-bangalore-6-to-9-yrs-jobid-spibdjIHKslzpSvf__PLUS__uAgZw==&source=srp"
+        ]
+    },
+    {
+        "query":"I am looking for a software developer role which require  javascript, web technologies, storage, docker, cloud computing, rest, cloud services, problem solving and require 6 + years of experience.",
+        "relevant_jobs":[
+            "https://www.timesjobs.com/job-detail/senior-software-developer-oracle-bengaluru-bangalore-6-to-10-yrs-jobid-8M5a__SLASH__j5wy7xzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-software-developer-oracle-bengaluru-bangalore-6-to-9-yrs-jobid-xHTQQiHkvx1zpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-software-developer-oracle-bengaluru-bangalore-6-to-9-yrs-jobid-KBHxTDIu9WVzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-software-developer-oracle-bengaluru-bangalore-6-to-9-yrs-jobid-WqVuzCZZUMBzpSvf__PLUS__uAgZw==&source=srp",
+            ""
+        ]
+    },
+    {
+        "query":"Find a Software Engineer job in Hyderabad requiring knowledge in  cloud native solutions, machine learning knowledge, algorithms, orchestration, debugging, data structures, software engineering, python, oracle and require 5 to 8 years of experience.",
+        "relevant_jobs":[
+            "https://www.timesjobs.com/job-detail/software-developer-3-oracle-hyderabad-secunderabad-5-to-8-yrs-jobid-Hw6nwM9qh9hzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/software-developer-2-oracle-hyderabad-secunderabad-5-to-7-yrs-jobid-eX23vk7zCllzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/software-developer-2-oracle-hyderabad-secunderabad-5-to-7-yrs-jobid-A8uctg5X9d5zpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/software-developer-2-oracle-hyderabad-secunderabad-5-to-7-yrs-jobid-PF0NXqrDTDRzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/software-developer-2-oracle-hyderabad-secunderabad-5-to-7-yrs-jobid-PP5FPUyO0yBzpSvf__PLUS__uAgZw==&source=srp"
+        ]
+    },
+    {
         "query":"Find Java Developer jobs in Gurgaon with 3 years of experience in Spring, Hibernate, SpringBoot",
         "relevant_jobs":[
             "https://www.timesjobs.com/job-detail/software-developer-java-mackenzie-modern-it-solutions-pvt-ltd-gurgaon-hyderabad-secunderabad-mumbai-noida-greater-noida-pune-3-to-7-yrs-jobid-Utik07pRGU9zpSvf__PLUS__uAgZw==&source=srp",
@@ -59,6 +107,7 @@
             "https://www.timesjobs.com/job-detail/node-js-guru-tradeboox-delhi-delhi-ncr-2-to-6-yrs-jobid-tMDa6tfWNTxzpSvf__PLUS__uAgZw==&source=srp"
         ]
     },
+    
     {
         "query":"FInd jobs for Software Developer 1 having experience in software development, debugging techniques, database management",
         "relevant_jobs":[
