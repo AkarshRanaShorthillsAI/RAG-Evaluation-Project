@@ -3678,5 +3678,15 @@
             "No valid link found",
             "No valid link found"
         ]
+    },
+    {
+        "query": "PHP developer with 4 years of experience",
+        "relevant_jobs": [
+            "https://www.timesjobs.com/job-detail/software-developer-php-midas-it-services-i-pvt-ltd-delhi-4-to-7-yrs-jobid-nDdjHzB7Rv9zpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/senior-php-software-developer-deal4loans-noida-greater-noida-5-to-8-yrs-jobid-Q8rs7SxnaYJzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/php-laravel-developer-bpsp-hr-solutions-pvt-ltd-hyderabad-secunderabad-1-to-4-yrs-jobid-jF9LkYfYz5tzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/software-developer-php-5-0-and-wordpress-delvetech-noida-greater-noida-4-to-7-yrs-jobid-8f__PLUS__XiWjSJkZzpSvf__PLUS__uAgZw==&source=srp",
+            "https://www.timesjobs.com/job-detail/php-developer-credencys-solutions-mumbai-2-to-5-yrs-jobid-nUO4HbWc961zpSvf__PLUS__uAgZw==&source=srp"
+        ]
     }
 ]
